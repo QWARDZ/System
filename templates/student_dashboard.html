@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/sdash.css">
+</head>
+<body>
+    <div class="sidebar navbar-closed" id="navbar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#view-students">View Students</a></li>
+            <li><a href="#add-student">Add Student</a></li>
+            <li><a href="#input-grade">Input Grade</a></li>
+        </ul>
+    </div>
+
+    <div class="main-container">
+        <header>
+            <button class="toggle-btn">☰</button>
+            <h1>Welcome, {{ session['username'] }}</h1>
+            <div class="date-time">
+                <p>Date: {{ date }}</p>
+                <p>Time: {{ time }}</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Main Content Sections -->
+            <section class="dashboard-section grades-section">
+                <h2>Your Grades</h2>
+                {% if grades %}
+                <div class="table-container">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for subject, grade in grades %}
+                            <tr>
+                                <td>{{ subject }}</td>
+                                <td>{{ grade }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No grades available.</p>
+                {% endif %}
+            </section>
+            <!-- Other sections like Announcements, Deadlines, etc. -->
+        </main>
+    </div>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const sidebar = document.getElementById('navbar');
+        const mainContainer = document.querySelector('.main-container');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContainer.classList.toggle('expanded-content');
+        });
+    </script>
+</body>
+</html>
