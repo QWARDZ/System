@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2024 at 11:23 AM
+-- Generation Time: Oct 23, 2024 at 02:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -111,13 +111,6 @@ CREATE TABLE `student_info` (
   `section` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student_info`
---
-
-INSERT INTO `student_info` (`stud_id`, `lrn_num`, `f_name`, `m_name`, `l_name`, `suffix`, `year_lvl`, `course`, `address`, `age`, `emerg_name`, `emerg_num`, `emerg_address`, `section`, `user_id`) VALUES
-(4, '1', 'Lester ', 'Buendicho', 'Ballaran', '', '2', 'Tambay', 'Molo', 1, 'Ballaran', '09090', 'Molo', 'Banana', 0);
 
 -- --------------------------------------------------------
 
@@ -288,7 +281,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `student_info`
 --
 ALTER TABLE `student_info`
-  MODIFY `stud_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `stud_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student_scores`
@@ -309,6 +302,12 @@ ALTER TABLE `teacher_info`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -323,19 +322,6 @@ ALTER TABLE `lesson_plans`
 --
 ALTER TABLE `sections`
   ADD CONSTRAINT `sections_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher_info` (`teacher_id`);
-
---
--- Constraints for table `student_info`
---
-ALTER TABLE `student_info`
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `student_scores`
---
-ALTER TABLE `student_scores`
-  ADD CONSTRAINT `student_scores_ibfk_1` FOREIGN KEY (`stud_id`) REFERENCES `student_info` (`stud_id`),
-  ADD CONSTRAINT `student_scores_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
